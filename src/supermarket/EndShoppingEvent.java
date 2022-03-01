@@ -28,14 +28,12 @@ public class EndShoppingEvent extends Event {
     @Override
     public Event happen() {
         customer.leaveTime = customer.checkoutTime + customer.checkoutDuration;
-        return null;
+        return new BeginCheckoutEvent(customer);
     }
-
 
     @Override
     public String toString() {
-        return "EndShoppingEvent{" + getTime() + " cust=" + customer.name
-                + " " + customer.shoppingDuration + '}';
+        return "End of shopping for customer: " + customer.name + ", Time: " + getTime() + ". " +
+                "Shopped for: " + customer.shoppingDuration + ". Proceeds to checkout.";
     }
-
 }

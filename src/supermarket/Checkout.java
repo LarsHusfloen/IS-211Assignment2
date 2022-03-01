@@ -6,6 +6,8 @@
 package supermarket;
 
 
+import java.util.Queue;
+
 /**
  *
  * @author evenal
@@ -19,10 +21,15 @@ public class Checkout {
 
     SuperMarket shop;
     String name;
+    Queue<Customer> queue;
 
 
     public Checkout(SuperMarket shop, int i) {
         this.shop = shop;
         this.name = "Checkout" + i;
+    }
+
+    public void addToQueue(Customer customer){
+        queue.add(customer);
     }
 }

@@ -27,4 +27,10 @@ public class BeginShoppingEvent extends Event {
     public Event happen() {
         return new EndShoppingEvent(customer);
     }
+
+    @Override
+    public String toString() {
+        return "Start of shopping for customer: " + customer.name + ", Time: " + getTime() + ". " +
+                "Shopped for: " + customer.shoppingDuration + ". Proceeds to checkout.";
+    }
 }

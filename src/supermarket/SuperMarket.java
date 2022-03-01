@@ -17,11 +17,6 @@ import java.util.List;
  */
 public class SuperMarket {
 
-    public static void main(String[] arts) {
-        SuperMarket supern = new SuperMarket();
-        supern.startSim();
-    }
-
     public static final int NUM_CHECKOUTS = 1;
     public static final int NUM_CUSTOMERS = 4;
 
@@ -35,7 +30,7 @@ public class SuperMarket {
         for (int i = 0; i < NUM_CHECKOUTS; i++)
             checkouts[i] = new Checkout(this, i);
         customers = new ArrayList<>();
-        init = new ArrayList<Event>();
+        init = new ArrayList<>();
         for (int i = 0; i < NUM_CUSTOMERS; i++) {
             Customer c = new Customer(this, i);
             init.add(new BeginShoppingEvent(c));

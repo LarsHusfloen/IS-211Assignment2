@@ -31,9 +31,11 @@ public class Customer {
     int endShoppingTime;
     int queueWaitDuration;
     int checkoutTime;
-    int checkoutDuration;
     int leaveTime;
 
+    int beginCheckoutTime;
+    int checkoutDuration;
+    int endCheckoutTime;
 
     public Customer(SuperMarket shop, int i) {
         this.shop = shop;
@@ -42,5 +44,9 @@ public class Customer {
         numProducts = EventSim.nextInt(MIN_PRODUCTS, MAX_PRODUCTS);
         shoppingDuration = EventSim.nextInt(MIN_SHOP_TIME, MAX_SHOP_TIME);
         endShoppingTime = beginShoppingTime + shoppingDuration;
+
+        beginCheckoutTime = i + endShoppingTime;
+        checkoutDuration = (numProducts * Checkout.PROD_DURATION) + Checkout.PAY_DURATION;
+        endCheckoutTime = beginCheckoutTime + checkoutDuration;
     }
 }

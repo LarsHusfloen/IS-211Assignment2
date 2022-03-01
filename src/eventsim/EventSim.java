@@ -89,9 +89,9 @@ public class EventSim {
             clock = e.getTime();
             addEvent(e.happen());
 
-            System.err.format("Time %d: Processing %s. Event queue:\n", clock, e.toString());
+            System.out.format("\nTime " + clock +": Processing " + e + " \nEvent queue:\n");
             for (Event qe : eventQueue)
-                System.err.println("     " + qe);
+                System.out.println("     " + qe);
         }
     }
 }
