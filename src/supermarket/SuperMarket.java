@@ -5,7 +5,6 @@ import eventsim.EventSim;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author evenal
@@ -18,7 +17,6 @@ public class SuperMarket {
     Checkout[] checkouts;
     List<Customer> customers;
     List<Event> init;
-
 
     public SuperMarket() {
         checkouts = new Checkout[NUM_CHECKOUTS];
@@ -33,7 +31,6 @@ public class SuperMarket {
         }
     }
 
-
     public Checkout getCheckoutByShortestQueue(){
         Checkout shortestCheckoutQueue = null;
         for (Checkout checkout:checkouts){
@@ -47,10 +44,18 @@ public class SuperMarket {
         return shortestCheckoutQueue;
     }
 
+    public void customerPerQueue(){
+        System.out.println();
+        System.out.println("Information per queue.");
+        for(Checkout checkout : checkouts) {
+            System.out.println(checkout.infoPerQueue());
+        }
+    }
 
     public void startSim() {
         EventSim sim = EventSim.getInstance();
         sim.setup(init);
         sim.run();
+        customerPerQueue();
     }
 }

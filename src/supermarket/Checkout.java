@@ -23,6 +23,8 @@ public class Checkout {
 
     SuperMarket shop;
     String name;
+    int queueAmount;
+    int queueTotalTime;
 
     public Checkout(SuperMarket shop, int i) {
         this.shop = shop;
@@ -32,7 +34,14 @@ public class Checkout {
 
     public int calculateCheckoutDuration(int numProducts){
         return (numProducts * PROD_DURATION) + PAY_DURATION;
+    }
 
+    public void incrementQueueAmount() {
+        queueAmount++;
+    }
+
+    public void addTogetherQueueTime(int time) {
+        queueTotalTime += time;
     }
 
     public Deque<Customer> getCustomerQueue() {
@@ -47,8 +56,16 @@ public class Checkout {
         else
             return customerAheadInQueue.leaveTime - customer.endShoppingTime;
     }
+
     @Override
     public String toString() {
         return name;
+    }
+
+    public String infoPerQueue(){
+        int averageWaitTimePerQueue = queueTotalTime / queueAmount;
+        return name + ": Customer amount " + queueAmount + ". Total wait time: "
+                + queueTotalTime + ". Average wait time: "
+                + averageWaitTimePerQueue + ".";
     }
 }

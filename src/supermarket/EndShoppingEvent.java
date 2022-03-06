@@ -24,7 +24,6 @@ public class EndShoppingEvent extends Event {
         this.customer = customer;
     }
 
-
     @Override
     public Event happen() {
         if(customer.numProducts == 0){
