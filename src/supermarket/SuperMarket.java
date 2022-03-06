@@ -33,11 +33,11 @@ public class SuperMarket {
 
     public Checkout getCheckoutByShortestQueue(){
         Checkout shortestCheckoutQueue = null;
-        for (Checkout checkout:checkouts){
+        for (Checkout checkout : checkouts){
             if(shortestCheckoutQueue==null){
                 shortestCheckoutQueue = checkout;
             } else {
-                if(shortestCheckoutQueue.getCustomerQueue().size()>checkout.getCustomerQueue().size())
+                if(shortestCheckoutQueue.getCustomerQueue().size() > checkout.getCustomerQueue().size())
                     shortestCheckoutQueue = checkout;
             }
         }

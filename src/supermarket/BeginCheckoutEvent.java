@@ -20,8 +20,9 @@ public class BeginCheckoutEvent extends Event{
         customer.checkoutTime = customer.endShoppingTime+1+customer.queueWaitDuration;
         customer.leaveTime = customer.checkoutTime + customer.checkoutDuration;
         checkout.getCustomerQueue().add(customer);
-        customer.getCheckout().incrementQueueAmount();
-        customer.getCheckout().addTogetherQueueTime(customer.queueWaitDuration);
+        checkout.incrementQueueAmount();
+        checkout.addTogetherQueueTime(customer.queueWaitDuration);
+        checkout.setMaxQueueSize();
 
         return new EndCheckoutEvent(customer, checkout);
     }

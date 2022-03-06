@@ -25,11 +25,13 @@ public class Checkout {
     String name;
     int queueAmount;
     int queueTotalTime;
+    int maxQueueSize;
 
     public Checkout(SuperMarket shop, int i) {
         this.shop = shop;
         this.name = "Checkout " + i;
         this.queue = new LinkedList<>();
+        this.maxQueueSize = 0;
     }
 
     public int calculateCheckoutDuration(int numProducts){
@@ -42,6 +44,12 @@ public class Checkout {
 
     public void addTogetherQueueTime(int time) {
         queueTotalTime += time;
+    }
+
+    public void setMaxQueueSize(){
+        if(queue.size() > maxQueueSize){
+            maxQueueSize++;
+        }
     }
 
     public Deque<Customer> getCustomerQueue() {
@@ -66,6 +74,8 @@ public class Checkout {
         int averageWaitTimePerQueue = queueTotalTime / queueAmount;
         return name + ": Customer amount " + queueAmount + ". Total wait time: "
                 + queueTotalTime + ". Average wait time: "
-                + averageWaitTimePerQueue + ".";
+                + averageWaitTimePerQueue
+                + ". Maximum number of people in the queue at one time: "
+                + maxQueueSize + ".";
     }
 }
