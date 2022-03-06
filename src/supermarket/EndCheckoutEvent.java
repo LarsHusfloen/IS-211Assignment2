@@ -5,23 +5,23 @@ import eventsim.EventSim;
 
 public class EndCheckoutEvent extends Event{
     Customer customer;
+    Checkout checkout;
 
-
-    public EndCheckoutEvent(Customer customer) {
+    public EndCheckoutEvent(Customer customer, Checkout checkout) {
         super(EventSim.getClock() + customer.checkoutDuration);
         this.customer = customer;
+        this.checkout = checkout;
     }
-
 
     @Override
     public Event happen() {
         customer.leaveTime = customer.checkoutTime + customer.checkoutDuration;
-        return null;
+        return new LeaveStore(customer);
     }
 
     @Override
     public String toString() {
-        return "End of checkout for customer: " + customer.name + ". Checked out at time: " + customer.endCheckoutTime +
-                ". Number of products: " + customer.numProducts + ".";
+        return customer + " has finished checkout. Queue wait time: "
+                + customer.queueWaitDuration + ".";
     }
 }

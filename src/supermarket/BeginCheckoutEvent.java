@@ -4,22 +4,28 @@ import eventsim.Event;
 
 public class BeginCheckoutEvent extends Event{
     Customer customer;
-
+    Checkout checkout;
 
     public BeginCheckoutEvent(Customer customer) {
-        super(customer.beginCheckoutTime);
+        super(customer.endShoppingTime);
         this.customer = customer;
     }
 
 
     @Override
     public Event happen() {
-        return new EndCheckoutEvent(customer);
+        checkout = customer.getCheckout();
+        customer.checkoutDuration = checkout.calculateCheckoutDuration(customer.numProducts);
+        customer.queueWaitDuration = checkout.calculateQueueDelay(customer);
+        customer.checkoutTime = customer.endShoppingTime+1+customer.queueWaitDuration;
+        customer.leaveTime = customer.checkoutTime + customer.checkoutDuration;
+        checkout.getCustomerQueue().add(customer);
+
+        return new EndCheckoutEvent(customer, checkout);
     }
 
     @Override
     public String toString() {
-        return "Start of checkout for customer: " + customer.name + ", Time: " + getTime() + ". " +
-                ". Number of products: " + customer.numProducts + ".";
+        return checkout==null ? customer + " enter queue " : customer + " enter queue " + checkout;
     }
 }

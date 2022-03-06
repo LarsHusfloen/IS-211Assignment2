@@ -21,7 +21,7 @@ public class EventSim {
      */
     private static final EventSim theSim = new EventSim();
 
-    /* The queue of events - those that happen earliest first */
+    /* The queue of events - those that happen the earliest first */
     PriorityQueue<Event> eventQueue;
 
     /**
@@ -44,9 +44,6 @@ public class EventSim {
     /**
      * Draw a random number in the interval min-max
      *
-     * @param min
-     * @param max
-     * @return
      */
     public static int nextInt(int min, int max) {
         return min + theSim.random.nextInt(max - min);
@@ -62,18 +59,16 @@ public class EventSim {
     /**
      * Prepare the simulation by adding a list of "start" events
      *
-     * @param initialEvents
      */
     public void setup(List<Event> initialEvents) {
-        for (Event e : initialEvents)
-            eventQueue.add(e);
+        eventQueue.addAll(initialEvents);
     }
 
 
-    public void addEvent(Event e) {
-        if (null == e)
+    public void addEvent(Event event) {
+        if (null == event)
             return;
-        eventQueue.add(e);
+        eventQueue.add(event);
     }
 
 
@@ -85,13 +80,13 @@ public class EventSim {
      */
     public void run() {
         while (!eventQueue.isEmpty()) {
-            Event e = eventQueue.poll();
-            clock = e.getTime();
-            addEvent(e.happen());
+            Event event = eventQueue.poll();
+            clock = event.getTime();
+            addEvent(event.happen());
 
-            System.out.format("\nTime " + clock +": Processing " + e + " \nEvent queue:\n");
-            for (Event qe : eventQueue)
-                System.out.println("     " + qe);
+            System.out.format("\nTime " + clock +":\t" + event + " \n Event queue:\n");
+            for (Event eventQueue : eventQueue)
+                System.out.println("     "+ eventQueue.getTime()+":\t" + eventQueue);
         }
     }
 }

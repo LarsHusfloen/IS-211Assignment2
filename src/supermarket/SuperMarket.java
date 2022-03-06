@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package supermarket;
 
 import eventsim.Event;
@@ -17,8 +12,8 @@ import java.util.List;
  */
 public class SuperMarket {
 
-    public static final int NUM_CHECKOUTS = 1;
-    public static final int NUM_CUSTOMERS = 4;
+    public static final int NUM_CHECKOUTS = 2;
+    public static final int NUM_CUSTOMERS = 8;
 
     Checkout[] checkouts;
     List<Customer> customers;
@@ -32,10 +27,24 @@ public class SuperMarket {
         customers = new ArrayList<>();
         init = new ArrayList<>();
         for (int i = 0; i < NUM_CUSTOMERS; i++) {
-            Customer c = new Customer(this, i);
-            init.add(new BeginShoppingEvent(c));
-            customers.add(c);
+            Customer customer = new Customer(this, i);
+            init.add(new BeginShoppingEvent(customer));
+            customers.add(customer);
         }
+    }
+
+
+    public Checkout getCheckoutByShortestQueue(){
+        Checkout shortestCheckoutQueue = null;
+        for (Checkout checkout:checkouts){
+            if(shortestCheckoutQueue==null){
+                shortestCheckoutQueue = checkout;
+            } else {
+                if(shortestCheckoutQueue.getCustomerQueue().size()>checkout.getCustomerQueue().size())
+                    shortestCheckoutQueue = checkout;
+            }
+        }
+        return shortestCheckoutQueue;
     }
 
 

@@ -30,7 +30,7 @@ public class BeginShoppingEvent extends Event {
 
     @Override
     public String toString() {
-        return "Start of shopping for customer: " + customer.name + ", Time: " + getTime() + ". " +
-                "Shopped for: " + customer.shoppingDuration + ". Proceeds to checkout.";
+        return customer + " started shopping. " +
+                "Shopped for: " + customer.shoppingDuration + ".";
     }
 }

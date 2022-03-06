@@ -14,16 +14,17 @@ import eventsim.EventSim;
  */
 public class Customer {
     // customer will pick a random number of products between these two values
-    public static final int MAX_PRODUCTS = 500;
-    public static final int MIN_PRODUCTS = 1;
+    public static final int MAX_PRODUCTS = 10;
+    public static final int MIN_PRODUCTS = 0;
 
-    // customer will spend ranom amount of time between these values before
+    // customer will spend random amount of time between these values before
     // going to check out
     public static final int MAX_SHOP_TIME = 50;
     public static final int MIN_SHOP_TIME = 1;
 
     SuperMarket shop;
     String name;
+    Checkout checkout;
 
     int beginShoppingTime;
     int shoppingDuration;
@@ -31,22 +32,28 @@ public class Customer {
     int endShoppingTime;
     int queueWaitDuration;
     int checkoutTime;
-    int leaveTime;
-
-    int beginCheckoutTime;
     int checkoutDuration;
-    int endCheckoutTime;
+    int leaveTime;
 
     public Customer(SuperMarket shop, int i) {
         this.shop = shop;
-        name = "Cust" + i;
+        name = "Customer " + i;
         beginShoppingTime = i;
         numProducts = EventSim.nextInt(MIN_PRODUCTS, MAX_PRODUCTS);
         shoppingDuration = EventSim.nextInt(MIN_SHOP_TIME, MAX_SHOP_TIME);
         endShoppingTime = beginShoppingTime + shoppingDuration;
+    }
 
-        beginCheckoutTime = i + endShoppingTime;
-        checkoutDuration = (numProducts * Checkout.PROD_DURATION) + Checkout.PAY_DURATION;
-        endCheckoutTime = beginCheckoutTime + checkoutDuration;
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public void chooseCheckout() {
+        checkout = shop.getCheckoutByShortestQueue();
+    }
+
+    public Checkout getCheckout() {
+        return checkout;
     }
 }
