@@ -7,9 +7,10 @@ public class LeaveStore extends Event {
     Checkout checkout;
 
     public LeaveStore(Customer customer) {
-        super(customer.leaveTime);
+        super(customer.leaveTime +1);
         this.customer = customer;
         checkout = customer.getCheckout();
+        customer.leaveTime++;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package supermarket;
 
 import eventsim.Event;
-import eventsim.EventSim;
 
 public class EndCheckoutEvent extends Event{
     Customer customer;
@@ -15,7 +14,6 @@ public class EndCheckoutEvent extends Event{
 
     @Override
     public Event happen() {
-        customer.leaveTime = customer.checkoutTime + customer.checkoutDuration;
         return new LeaveStore(customer);
     }
 

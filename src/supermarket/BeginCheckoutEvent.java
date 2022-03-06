@@ -7,7 +7,7 @@ public class BeginCheckoutEvent extends Event{
     Checkout checkout;
 
     public BeginCheckoutEvent(Customer customer) {
-        super(customer.endShoppingTime);
+        super(customer.endShoppingTime +1);
         this.customer = customer;
     }
 
