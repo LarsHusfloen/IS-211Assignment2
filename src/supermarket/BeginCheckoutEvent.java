@@ -29,6 +29,7 @@ public class BeginCheckoutEvent extends Event{
 
     @Override
     public String toString() {
-        return checkout==null ? customer + " enter queue " : customer + " enter queue " + checkout;
+        return (checkout==null ? customer + " enter queue" : customer + " enter queue " + checkout)
+                + ". Queue wait time: " + customer.queueWaitDuration + ".";
     }
 }

@@ -8,7 +8,7 @@ public class EndCheckoutEvent extends Event{
     Checkout checkout;
 
     public EndCheckoutEvent(Customer customer, Checkout checkout) {
-        super(EventSim.getClock() + customer.checkoutDuration);
+        super(customer.checkoutTime);
         this.customer = customer;
         this.checkout = checkout;
     }
@@ -21,7 +21,7 @@ public class EndCheckoutEvent extends Event{
 
     @Override
     public String toString() {
-        return customer + " has finished checkout. Queue wait time: "
-                + customer.queueWaitDuration + ".";
+        return customer + " was checked out at "+ checkout +". Checkout duration: "
+                + customer.checkoutDuration + ".";
     }
 }
