@@ -1,6 +1,6 @@
-package supermarket;
+package org.supermarket;
 
-import eventsim.Event;
+import org.eventsim.Event;
 
 public class LeaveStore extends Event {
     Customer customer;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eventsim;
+package org.eventsim;
 
 
 /**
@@ -29,7 +29,7 @@ public abstract class Event {
 
 
     /**
-     * Make the changes to the simulated supermarket that happens as a
+     * Make the changes to the simulated org.supermarket that happens as a
      * consequence of this event.
      *
      * @return an event that will happen later as a consequence of this, or null

@@ -1,4 +1,6 @@
-import supermarket.SuperMarket;
+package org;
+
+import org.supermarket.SuperMarket;
 
 public class main {
 

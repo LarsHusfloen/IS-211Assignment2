@@ -1,7 +1,7 @@
-package supermarket;
+package org.supermarket;
 
-import eventsim.Event;
-import eventsim.EventSim;
+import org.eventsim.Event;
+import org.eventsim.EventSim;
 import java.util.ArrayList;
 import java.util.List;
 

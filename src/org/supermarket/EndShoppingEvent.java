@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package supermarket;
+package org.supermarket;
 
-import eventsim.Event;
-import eventsim.EventSim;
+import org.eventsim.Event;
+import org.eventsim.EventSim;
 
 
 /**
