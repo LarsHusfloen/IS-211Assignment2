@@ -58,11 +58,7 @@ public class Checkout {
 
     public int calculateQueueDelay(Customer customer) {
         Customer customerAheadInQueue = queue.peekLast();
-        if(customerAheadInQueue == null || customerAheadInQueue.equals(customer)){
-            return 0;
-        }
-        else
-            return customerAheadInQueue.leaveTime - customer.endShoppingTime;
+        return (customerAheadInQueue == null || customerAheadInQueue.equals(customer)) ?  0 : customerAheadInQueue.leaveTime - customer.endShoppingTime;
     }
 
     @Override
