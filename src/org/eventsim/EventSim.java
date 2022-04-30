@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.eventsim;
 
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
-
 
 /**
  * The core class of the discrete event simulation
@@ -21,8 +15,7 @@ public class EventSim {
      */
     private static final EventSim theSim = new EventSim();
 
-    /* The queue of events - those that happen the earliest first */
-    PriorityQueue<Event> eventQueue;
+    /* The queue of events - those that happen the earliest first */ PriorityQueue<Event> eventQueue;
 
     /**
      * The "current" time
@@ -30,47 +23,36 @@ public class EventSim {
     int clock;
     Random random;
 
-
     public static EventSim getInstance() {
         return theSim;
     }
-
 
     public static int getClock() {
         return theSim.clock;
     }
 
-
     /**
      * Draw a random number in the interval min-max
-     *
      */
     public static int nextInt(int min, int max) {
         return min + theSim.random.nextInt(max - min);
     }
-
 
     public EventSim() {
         eventQueue = new PriorityQueue<>(new EventTimeComparator());
         random = new Random(42);
     }
 
-
     /**
      * Prepare the simulation by adding a list of "start" events
-     *
      */
     public void setup(List<Event> initialEvents) {
         eventQueue.addAll(initialEvents);
     }
 
-
     public void addEvent(Event event) {
-        if (null == event)
-            return;
-        eventQueue.add(event);
+        if (null != event) eventQueue.add(event);
     }
-
 
     /**
      * Run the simulation. Advances the time (clock) to the time when the next
@@ -84,9 +66,8 @@ public class EventSim {
             clock = event.getTime();
             addEvent(event.happen());
 
-            System.out.format("\nTime " + clock +":\t" + event + " \n Event queue:\n");
-            for (Event eventQueue : eventQueue)
-                System.out.println("     "+ eventQueue.getTime()+":\t" + eventQueue);
+            System.out.format("\nTime " + clock + ":\t" + event + " \n Event queue:\n");
+            eventQueue.forEach(queue -> System.out.println("     " + queue.getTime() + ":\t" + queue));
         }
     }
 }
