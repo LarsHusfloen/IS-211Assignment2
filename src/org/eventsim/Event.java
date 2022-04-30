@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.eventsim;
 
-
 /**
- * BAse class for events
+ * Base class for events
  *
  * @author evenal
  */
@@ -17,19 +11,16 @@ public abstract class Event {
      */
     int time;
 
-
-    public Event(int time) {
+    protected Event(int time) {
         this.time = time;
     }
-
 
     public int getTime() {
         return time;
     }
 
-
     /**
-     * Make the changes to the simulated org.supermarket that happens as a
+     * Make the changes to the simulated supermarket that happens as a
      * consequence of this event.
      *
      * @return an event that will happen later as a consequence of this, or null
