@@ -2,7 +2,7 @@ package org;
 
 import org.supermarket.SuperMarket;
 
-public class main {
+public class Main {
 
     public static void main(String[] arts) {
         SuperMarket supermarket = new SuperMarket();
