@@ -2,11 +2,11 @@ package org.supermarket;
 
 import org.eventsim.Event;
 import org.eventsim.EventSim;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author evenal
  */
 public class SuperMarket {
@@ -31,23 +31,23 @@ public class SuperMarket {
         }
     }
 
-    public Checkout getCheckoutByShortestQueue(){
+    public Checkout getCheckoutByShortestQueue() {
         Checkout shortestCheckoutQueue = null;
-        for (Checkout checkout : checkouts){
-            if(shortestCheckoutQueue==null){
+        for (Checkout checkout : checkouts) {
+            if (shortestCheckoutQueue == null) {
                 shortestCheckoutQueue = checkout;
             } else {
-                if(shortestCheckoutQueue.getCustomerQueue().size() > checkout.getCustomerQueue().size())
+                if (shortestCheckoutQueue.getCustomerQueue().size() > checkout.getCustomerQueue().size())
                     shortestCheckoutQueue = checkout;
             }
         }
         return shortestCheckoutQueue;
     }
 
-    public void customerPerQueue(){
+    public void customerPerQueue() {
         System.out.println();
         System.out.println("Information per queue.");
-        for(Checkout checkout : checkouts) {
+        for (Checkout checkout : checkouts) {
             System.out.println(checkout.infoPerQueue());
         }
     }
