@@ -66,7 +66,7 @@ public class EventSim {
             clock = event.getTime();
             addEvent(event.happen());
 
-            System.out.format("\nTime " + clock + ":\t" + event + " \n Event queue:\n");
+            System.out.println("\nTime " + clock + ":\t" + event + " \n Event queue:\n");
             eventQueue.forEach(queue -> System.out.println("     " + queue.getTime() + ":\t" + queue));
         }
     }
